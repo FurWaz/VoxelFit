@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+#__nuxt > div {
+    display: flex;
+    min-width: 100vw;
+    min-height: 100vh;
+    @apply bg-zinc-200 dark:bg-zinc-800;
+}
