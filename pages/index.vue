@@ -54,9 +54,6 @@ const code_content = ref('');
 watch(code_content, (val, old) => {
   if (compileTimeout) clearTimeout(compileTimeout);
   compileTimeout = setTimeout(() => {
-
-    console.log('updating script, size is', scene.size.x, scene.size.y, scene.size.z);
-
     const createLua = (code: string, x: number, y: number, z: number) => `function color(x, z, y)
       ${code}
     end

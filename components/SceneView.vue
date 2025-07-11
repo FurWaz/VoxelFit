@@ -65,7 +65,6 @@ function setBoundingSize(x: number, y: number, z: number) {
 
 const sceneBlocks: THREE.Object3D[] = [];
 function updateBlocks(size: {x:number,y:number,z:number}, blocks:any[], index:(x:number,y:number,z:number)=>number) {
-  console.log('updating BLOCKS, size is ', size.x, size.y, size.z);
   sceneBlocks.forEach(obj => {
     if(scene && obj) scene.remove(obj);
   });
