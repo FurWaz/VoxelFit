@@ -86,13 +86,13 @@ function updateBlocks(code: string) {
 
 let compileTimeout = null as NodeJS.Timeout|null
 const code_content = ref(`if (x-y > z) then
-  return 0xff6900
+  return ORANGE
 end
 if (z == 0) then
-  return 0x2b7fff
+  return BLUE
 end
 if (math.abs(x-4) < y-5 and z < y-4) then
-  return 0x00c951
+  return GREEN
 end`);
 
 watch(code_content, (val, old) => {
