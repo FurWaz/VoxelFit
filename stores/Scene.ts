@@ -4,9 +4,9 @@ export const useScene = () => {
   return defineStore('scene', {
     state: () => ({
       size: {
-        x: 1,
-        y: 1,
-        z: 1
+        x: 9,
+        y: 9,
+        z: 9
       },
       blocks: [] as any[]
     }),

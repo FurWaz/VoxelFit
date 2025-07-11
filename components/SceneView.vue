@@ -118,7 +118,7 @@ onMounted(() => {
   controls.enableDamping = true;
   controls.dampingFactor = 0.1;
 
-  camera.position.z = 5;
+  camera.position.z = 10;
 
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);

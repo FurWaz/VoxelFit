@@ -49,11 +49,7 @@ watch(size_y, (val, old) => scene.size.y = val);
 const size_z = ref(1);
 watch(size_z, (val, old) => scene.size.z = val);
 
-let compileTimeout = null as NodeJS.Timeout|null
-const code_content = ref('');
-watch(code_content, (val, old) => {
-  if (compileTimeout) clearTimeout(compileTimeout);
-  compileTimeout = setTimeout(() => {
+function updateBlocks(code: string) {
     const createLua = (code: string, x: number, y: number, z: number) => `function color(x, z, y)
       ${code}
     end
@@ -66,7 +62,7 @@ watch(code_content, (val, old) => {
       for (let x = 0; x < state.size.x; x++) {
         for (let y = 0; y < state.size.y; y++) {
           for (let z = 0; z < state.size.z; z++) {
-            const result = luaEnv.parse(createLua(val, x, y, z)).exec();
+            const result = luaEnv.parse(createLua(code, x, y, z)).exec();
             if (result) tmp[scene.index(x, y, z)] = parseInt(result.toString());
             else tmp[scene.index(x, y, z)] = undefined;
           }
@@ -74,10 +70,29 @@ watch(code_content, (val, old) => {
       }
       scene.blocks = tmp;
     });
+  }
 
-    if (compileTimeout) clearTimeout(compileTimeout);
-  }, 500);
+let compileTimeout = null as NodeJS.Timeout|null
+const code_content = ref(`if (x-y > z) then
+  return 0xff6900
+end
+if (z == 0) then
+  return 0x2b7fff
+end
+if (math.abs(x-4) < y-5 and z < y-4) then
+  return 0x00c951
+end`);
+
+watch(code_content, (val, old) => {
+  if (compileTimeout) clearTimeout(compileTimeout);
+  compileTimeout = setTimeout(() => updateBlocks(val), 500);
 });
+
+setTimeout(() => {
+  scene.$patch({});
+  updateBlocks(code_content.value);
+}, 100);
+
 </script>
 
 <style>
