@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@types/three": "^0.178.1",
+    "lua-in-js": "^2.2.5",
     "nuxt": "^3.17.6",
+    "simple-code-editor": "^2.1.0",
     "three": "^0.178.0",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
