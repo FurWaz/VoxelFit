@@ -51,6 +51,18 @@ watch(size_z, (val, old) => scene.size.z = val);
 
 function updateBlocks(code: string) {
     const createLua = (code: string, x: number, y: number, z: number) => `function color(x, z, y)
+      local RED = 0xfb2c36
+      local ORANGE = 0xff6900
+      local YELLOW = 0xefb100
+      local GREEN = 0x00c951
+      local CYAN = 0x00b8db
+      local BLUE = 0x2b7fff
+      local PURPLE = 0xad46ff
+      local PINK = 0xf6339a
+      local WHITE = 0xfafafa
+      local BLACK = 0x09090b
+      local GREY = 0x71717b
+      local GRAY = 0x71717b
       ${code}
     end
     return color(${x}, ${y}, ${z})`;
